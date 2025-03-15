@@ -9,15 +9,19 @@ def main():
     with open('payroll_original.csv', 'r', encoding='utf8', newline='') as original_csv:
         with open('payroll.csv', 'w', encoding='utf8', newline='') as new_csv:
             writer = csv.writer(new_csv)
-            writer.writerow(csv.reader(original_csv).__next__())
+            header = next(csv.reader(original_csv))
+            writer.writerow(header)
+            header_idx = dict(zip(header, range(len(header))))
+            agency_idx = header_idx['Agency Name']
+            borough_idx = header_idx['Work Location Borough']
 
             for row in csv.reader(original_csv):
-                m = re.match(r, row[2])
+                m = re.match(r, row[agency_idx])
 
                 if m:
-                    row[2] = m.group(1)
+                    row[agency_idx] = m.group(1)
 
-                row[7] = row[7].upper()
+                row[borough_idx] = row[borough_idx].upper()
                 writer.writerow(row)
 
     df = pd.read_csv('payroll.csv')
