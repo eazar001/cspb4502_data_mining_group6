@@ -4,6 +4,22 @@ import csv
 
 
 def main():
+    preprocess_csv(False)
+    df = pd.read_csv('payroll.csv')
+    pd.options.display.float_format = '{:.2f}'.format
+    pd.set_option('display.max_rows', None)
+
+    add_normalized_pay(df)
+
+    with open('out.txt', 'w') as out_file:
+        budgets_by_year(out_file, df)
+        budgets_by_dept(out_file, df)
+        budgets_by_borough(out_file, df)
+
+def preprocess_csv(preprocess):
+    if not preprocess:
+        return
+
     r = re.compile(r"(.+) #.*")
 
     with open('payroll_original.csv', 'r', encoding='utf8', newline='') as original_csv:
@@ -23,17 +39,6 @@ def main():
 
                 row[borough_idx] = row[borough_idx].upper()
                 writer.writerow(row)
-
-    df = pd.read_csv('payroll.csv')
-    pd.options.display.float_format = '{:.2f}'.format
-    pd.set_option('display.max_rows', None)
-
-    add_normalized_pay(df)
-
-    with open('out.txt', 'w') as out_file:
-        budgets_by_year(out_file, df)
-        budgets_by_dept(out_file, df)
-        budgets_by_borough(out_file, df)
 
 def add_normalized_pay(df):
     df['Calculated Hourly Rate'] = df['Regular Gross Paid'] / df['Regular Hours']
