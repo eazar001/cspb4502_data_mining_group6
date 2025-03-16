@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import re
 import csv
 
@@ -18,6 +19,7 @@ def preprocess_csv(enabled, input_file, output_file):
 
             writer.writerows(map(lambda x: preprocess_csv_row(hash_tag_pattern, x, header_idx), csv.reader(original_csv)))
 
+
 def preprocess_csv_row(hash_tag_pattern, row, header_idx):
     agency_idx = header_idx['Agency Name']
     borough_idx = header_idx['Work Location Borough']
@@ -31,21 +33,25 @@ def preprocess_csv_row(hash_tag_pattern, row, header_idx):
     return row
 
 
-def add_normalized_pay(f, df):
-    df['Calculated Hourly Rate'] = df['Regular Gross Paid'] / df['Regular Hours']
-    f.write(f"{df['Calculated Hourly Rate']}")
+def add_normalized_pay(df):
+    df['Calculated Hourly Rate'] = df['Regular Gross Paid'] / df['Regular Hours'].apply(lambda x: np.inf if x <= 0 else x)
+
 
 def budgets_by_year(f, df):
     f.write(f"{df.groupby(['Fiscal Year'])['Regular Gross Paid'].sum()}\n\n")
 
+
 def budgets_by_dept(f, df):
     f.write(f"{df.groupby(['Agency Name'])['Regular Gross Paid'].sum()}\n\n")
+
 
 def budgets_by_borough(f, df):
     f.write(f"{df.groupby(['Work Location Borough'])['Regular Gross Paid'].sum()}\n\n")
 
-def normalized_pay(f, df):
-    f.write(f"{df.groupby(['Title Description'])['Calculated Hourly Rate'].sum()}\n\n")
+
+def pay_by_job_title(f, df):
+    f.write(f"{df.groupby(['Title Description'])['Calculated Hourly Rate'].mean()}\n\n")
+
 
 def main():
     preprocess_csv(False, 'payroll_original.csv', 'payroll.csv')
@@ -53,11 +59,13 @@ def main():
     pd.options.display.float_format = '{:.2f}'.format
     pd.set_option('display.max_rows', None)
 
-    with open('out.txt', 'w') as out_file:
+    add_normalized_pay(df)
+
+    with open('out.txt', 'w', encoding='utf8') as out_file:
         budgets_by_year(out_file, df)
         budgets_by_dept(out_file, df)
         budgets_by_borough(out_file, df)
-        add_normalized_pay(out_file, df)
+        pay_by_job_title(out_file, df)
 
 
 if __name__ == '__main__':
