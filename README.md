@@ -21,4 +21,4 @@ Description of the project: In this project, we are focusing  on New York Cityâ€
 
 **Link to the video demonstration**:
 
-**Link to your final project paper**:
+**Link to your final project paper**: [Final Report]("Group6_NYCPayroll_Part4.docx.pdf")
