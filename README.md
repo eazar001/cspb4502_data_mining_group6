@@ -19,6 +19,6 @@ Description of the project: In this project, we are focusing  on New York Cityâ€
 
 **Application of this knowledge**: Our results are useful for a wide range of audiences interested in NYC government spending and employee pay - including government planners, hiring managers, job seekers, and curious taxpayers. 
 
-**Link to the video demonstration**:
+**Link to the video demonstration**: [Video Presentation]("Group6_Nyc_Payroll_6_Video.mp4")
 
 **Link to your final project paper**: [Final Report]("Group6_NYCPayroll_Part4.docx.pdf")
