@@ -8,7 +8,8 @@ Description of the project: In this project, we are focusing  on New York Cityâ€
 
 **Summary of the question(s) sought and the answers**:
 1. *How is the total NYC payroll budget allocated among departments? Among boroughs?* <br>
-  The top spending boroughs are Manhattan, Queens, and Brooklyn. The top spending departments are the Department of Education, Police Department, and Fire Department. 
+
+The top spending boroughs are Manhattan, Queens, and Brooklyn. The top spending departments are the Department of Education, Police Department, and Fire Department. 
 
 2. *How does pay for a certain job title vary from year to year? Does the average pay for a certain job title vary noticeably across boroughs?* <br>
 
@@ -17,7 +18,8 @@ The overall trend throughout the years is trending generally upwards for all pos
 
 
 3. *How much of the total payroll spending is for overtime? Are certain departments consistently spending more on overtime? Can we predict overtime spending? Are certain job titles working overtime more often than others?* <br>
-   The total payroll spending for overtime varies between 6-9% of total payroll spending over the past decade. There is some variation among departmental spending but we have consistently high spenders like the Fire Department, Department of Correction, Department of Sanitation, and Police Department. There were interesting trends surrounding these departments following the 2020 pandemic. Department was a very strong predictor of number of overtime hours worked (much stronger than number of employees within a department). Finally, the job titles most commonly working overtime are Police Officer, Firefighter, Correction Officer, and Sanitation Officer.
+
+The total payroll spending for overtime varies between 6-9% of total payroll spending over the past decade. There is some variation among departmental spending but we have consistently high spenders like the Fire Department, Department of Correction, Department of Sanitation, and Police Department. There were interesting trends surrounding these departments following the 2020 pandemic. Department was a very strong predictor of number of overtime hours worked (much stronger than number of employees within a department). Finally, the job titles most commonly working overtime are Police Officer, Firefighter, Correction Officer, and Sanitation Officer.
 
 4. *How does pay rate/salary relate to employment duration? Do employees who are paid more/less have longer/shorter tenures than others? How does this vary across boroughs, departments, and job title?* <br>
 
